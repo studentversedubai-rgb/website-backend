@@ -1,0 +1,17 @@
+{
+  "name": "studentverse-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.967.0",
+    "@supabase/supabase-js": "^2.48.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ioredis": "^5.8.2"
+  }
+}
