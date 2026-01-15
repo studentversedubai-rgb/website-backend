@@ -10,38 +10,18 @@ const {
   getPendingSignup,
   clearPendingSignup,
 } = require("./otpService");
-//const { generateOtp, setOtp, verifyOtp } = require('./otpStore');
+const { canRequestFromIp, getClientIp } = require("./rateLimitService");
+const {
+  calculateWaitlistPosition,
+  generateUniqueReferralCode,
+  processReferral,
+} = require("./waitlistService");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/contact", contactRoutes);
 const PORT = process.env.PORT || 3000;
-const REFERRAL_THRESHOLD = parseInt(process.env.REFERRAL_THRESHOLD || "5", 10);
-
-// helper to generate referral codes
-function generateReferralCode(length = 8) {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let code = "";
-  for (let i = 0; i < length; i++) {
-    code += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return code;
-}
-
-async function generateUniqueReferralCode() {
-  while (true) {
-    const code = generateReferralCode();
-    const { data, error } = await supabase
-      .from("waitlist_users")
-      .select("id")
-      .eq("referral_code", code)
-      .maybeSingle();
-
-    if (error) throw error;
-    if (!data) return code;
-  }
-}
 
 // -------------------- WAITLIST JOIN --------------------
 /*
@@ -147,31 +127,58 @@ app.post("/api/waitlist/join", async (req, res) => {
 });
  */
 
-// better api route
+// -------------------- WAITLIST JOIN --------------------
+/**
+ * POST /api/waitlist/join
+ * 
+ * Initiates waitlist signup by sending OTP to email.
+ * Uses email enumeration protection - always returns generic response.
+ * Implements IP-based rate limiting in addition to email-based limits.
+ */
 app.post("/api/waitlist/join", async (req, res) => {
   const { email, referralCode } = req.body || {};
 
   if (!email) {
-    return res.status(400).json({ error: "email is required" });
+    return res.status(400).json({ error: "Email is required" });
   }
 
   try {
-    // Store pending signup data in Redis
-    await storePendingSignup(email, referralCode);
+    // 1️⃣ IP-based rate limiting (PRODUCTION SECURITY)
+    const clientIp = getClientIp(req);
+    const ipAllowed = await canRequestFromIp(clientIp, "waitlist-join");
 
-    // Send OTP
-    const result = await requestOtpForEmail(email);
-    if (!result.ok) {
-      return res.status(429).json({ error: result.error });
+    if (!ipAllowed) {
+      // Generic response - don't reveal it's an IP rate limit
+      return res.status(429).json({
+        error: "Too many requests. Please try again later.",
+      });
     }
 
+    // 2️⃣ Store pending signup data in Redis (for later verification)
+    await storePendingSignup(email, referralCode);
+
+    // 3️⃣ Send OTP (has its own email-based rate limiting)
+    const result = await requestOtpForEmail(email);
+
+    if (!result.ok) {
+      // Generic response - don't reveal if it's email rate limit or other issue
+      return res.status(429).json({
+        error: "Too many requests. Please try again later.",
+      });
+    }
+
+    // 4️⃣ GENERIC RESPONSE (Email Enumeration Protection)
+    // Never reveal whether email exists, is verified, or is already on waitlist
     return res.json({
       ok: true,
-      message: "OTP sent to email",
+      message: "If this email is eligible, you will receive a verification code.",
     });
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Failed to start signup" });
+    console.error("Error in /api/waitlist/join:", err);
+    // Generic error response
+    return res.status(500).json({
+      error: "An error occurred. Please try again later.",
+    });
   }
 });
 
@@ -221,29 +228,62 @@ app.post("/api/auth/request-otp", async (req, res) => {
 });
 */
 
-// Verify OTP
+// -------------------- OTP VERIFICATION --------------------
+/**
+ * POST /api/auth/verify-otp
+ * 
+ * Verifies OTP and completes signup/login.
+ * 
+ * PRODUCTION SECURITY FEATURES:
+ * - IP-based rate limiting
+ * - Email enumeration protection (generic responses)
+ * - One-time data return (referral code + waitlist position)
+ * - No authentication tokens (OTP is the only proof)
+ * 
+ * RESPONSE BEHAVIOR:
+ * - Returns user data (referralCode, position) ONLY ONCE after successful verification
+ * - Generic error messages that don't reveal user existence
+ * - No way to fetch this data again without re-verifying
+ */
 app.post("/api/auth/verify-otp", async (req, res) => {
   const { email, otp } = req.body || {};
 
   if (!email || !otp) {
     return res.status(400).json({
       ok: false,
-      error: "email and otp are required"
+      error: "Email and verification code are required",
     });
   }
 
   try {
-    // 1️⃣ Verify OTP FIRST (security boundary)
-    const otpResult = await verifyOtpForEmail(email, otp);
-    if (!otpResult.ok) {
-      return res.status(400).json({
+    // 1️⃣ IP-based rate limiting (PRODUCTION SECURITY)
+    const clientIp = getClientIp(req);
+    const ipAllowed = await canRequestFromIp(clientIp, "verify-otp");
+
+    if (!ipAllowed) {
+      // Generic response - don't reveal it's an IP rate limit
+      return res.status(429).json({
         ok: false,
-        error: otpResult.error || "Invalid or expired OTP",
-        errorType: "INVALID_OTP"
+        error: "Too many requests. Please try again later.",
       });
     }
 
-    // 2️⃣ Check if user already exists
+    // 2️⃣ Verify OTP (security boundary - validates email ownership)
+    const otpResult = await verifyOtpForEmail(email, otp);
+
+    if (!otpResult.ok) {
+      // GENERIC ERROR (Email Enumeration Protection)
+      // Don't reveal if OTP is wrong, expired, or email doesn't exist
+      return res.status(400).json({
+        ok: false,
+        error: "Invalid or expired verification code",
+      });
+    }
+
+    // ✅ OTP VERIFIED - Email ownership proven
+    // Now we can safely interact with the database
+
+    // 3️⃣ Check if user already exists in database
     const { data: existingUser, error: fetchErr } = await supabase
       .from("waitlist_users")
       .select("*")
@@ -254,28 +294,31 @@ app.post("/api/auth/verify-otp", async (req, res) => {
       console.error("Database fetch error:", fetchErr);
       return res.status(500).json({
         ok: false,
-        error: "Database error while fetching user",
-        errorType: "DATABASE_ERROR"
+        error: "An error occurred. Please try again later.",
       });
     }
 
-    // ✅ Case A: User already exists & verified (login-like behavior)
+    // 📊 CASE A: User exists and is already verified (returning user)
     if (existingUser && existingUser.is_verified) {
       await clearPendingSignup(email);
 
+      // Calculate current waitlist position
+      const position = await calculateWaitlistPosition(existingUser.id);
+
+      // ONE-TIME DATA RETURN (no auth, no way to fetch again)
       return res.json({
         ok: true,
         action: "login",
-        message: "Welcome back! You're already verified.",
-        userId: existingUser.id,
-        email: existingUser.email,
-        referralCode: existingUser.referral_code,
-        referralCount: existingUser.referral_count || 0,
-        isVerified: true,
+        message: "Welcome back! Email verified successfully.",
+        data: {
+          referralCode: existingUser.referral_code,
+          referralCount: existingUser.referral_count || 0,
+          waitlistPosition: position,
+        },
       });
     }
 
-    // ✅ Case B: User exists but not verified
+    // 📊 CASE B: User exists but not verified yet (first-time verification)
     if (existingUser && !existingUser.is_verified) {
       const { error: updateErr } = await supabase
         .from("waitlist_users")
@@ -286,39 +329,44 @@ app.post("/api/auth/verify-otp", async (req, res) => {
         console.error("Database update error:", updateErr);
         return res.status(500).json({
           ok: false,
-          error: "Failed to update verification status",
-          errorType: "DATABASE_ERROR"
+          error: "An error occurred. Please try again later.",
         });
       }
 
       await clearPendingSignup(email);
 
+      // Calculate waitlist position
+      const position = await calculateWaitlistPosition(existingUser.id);
+
+      // ONE-TIME DATA RETURN
       return res.json({
         ok: true,
         action: "verified",
         message: "Email verified successfully!",
-        userId: existingUser.id,
-        email: existingUser.email,
-        referralCode: existingUser.referral_code,
-        referralCount: existingUser.referral_count || 0,
-        isVerified: true,
+        data: {
+          referralCode: existingUser.referral_code,
+          referralCount: existingUser.referral_count || 0,
+          waitlistPosition: position,
+        },
       });
     }
 
-    // ✅ Case C: New user → create from pending signup
+    // 📊 CASE C: New user - create account from pending signup
     const pending = await getPendingSignup(email);
+
     if (!pending) {
+      // This shouldn't happen in normal flow, but handle gracefully
       return res.status(400).json({
         ok: false,
-        error: "No pending signup found. Please restart signup.",
-        errorType: "NO_PENDING_SIGNUP"
+        error: "Verification session expired. Please restart signup.",
       });
     }
 
     const referralCode = pending.referralCode || null;
     const newReferralCode = await generateUniqueReferralCode();
 
-    const { data: user, error: insertErr } = await supabase
+    // Create new user account
+    const { data: newUser, error: insertErr } = await supabase
       .from("waitlist_users")
       .insert({
         email,
@@ -330,55 +378,49 @@ app.post("/api/auth/verify-otp", async (req, res) => {
 
     if (insertErr) {
       console.error("Database insert error:", insertErr);
+
+      // Handle duplicate email (race condition edge case)
+      if (insertErr.code === "23505") {
+        return res.status(400).json({
+          ok: false,
+          error: "An account with this email already exists.",
+        });
+      }
+
       return res.status(500).json({
         ok: false,
-        error: "Failed to create user account",
-        errorType: "DATABASE_ERROR"
+        error: "An error occurred. Please try again later.",
       });
     }
 
-    // Apply referral logic
+    // Process referral if provided
     if (referralCode) {
-      const { data: referrer } = await supabase
-        .from("waitlist_users")
-        .select("*")
-        .eq("referral_code", referralCode)
-        .maybeSingle();
-
-      if (referrer && referrer.email !== email) {
-        await supabase
-          .from("waitlist_users")
-          .update({
-            referral_count: (referrer.referral_count || 0) + 1,
-          })
-          .eq("id", referrer.id);
-
-        await supabase.from("referral_events").insert({
-          referrer_id: referrer.id,
-          referred_id: user.id,
-        });
-      }
+      await processReferral(newUser.id, email, referralCode);
     }
 
     await clearPendingSignup(email);
 
+    // Calculate waitlist position for new user
+    const position = await calculateWaitlistPosition(newUser.id);
+
+    // ONE-TIME DATA RETURN (ONLY time user gets this data)
     return res.json({
       ok: true,
       action: "signup",
       message: "Account created and verified successfully!",
-      userId: user.id,
-      email: user.email,
-      referralCode: user.referral_code,
-      referralCount: 0,
-      isVerified: true,
+      data: {
+        referralCode: newUser.referral_code,
+        referralCount: 0,
+        waitlistPosition: position,
+      },
     });
   } catch (err) {
-    console.error("Unexpected error in verify-otp:", err);
+    console.error("Unexpected error in /api/auth/verify-otp:", err);
+
+    // Generic error response (don't leak internal details)
     return res.status(500).json({
       ok: false,
-      error: "An unexpected error occurred during verification",
-      errorType: "INTERNAL_ERROR",
-      detail: process.env.NODE_ENV === 'development' ? err.message : undefined
+      error: "An error occurred. Please try again later.",
     });
   }
 });
