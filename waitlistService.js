@@ -112,13 +112,24 @@ async function processReferral(newUserId, newUserEmail, referralCode) {
             return;
         }
 
-        // Update referrer's count
+        // Update referrer's count and unlock reward if threshold reached
         const newCount = (referrer.referral_count || 0) + 1;
+        const REFERRAL_THRESHOLD = 5;
+
+        // Unlock reward only if we're hitting the threshold for the first time
+        const shouldUnlock = newCount >= REFERRAL_THRESHOLD && referrer.reward_status !== "unlocked";
+
+        const updateData = {
+            referral_count: newCount,
+        };
+
+        if (shouldUnlock) {
+            updateData.reward_status = "unlocked";
+        }
+
         const { error: updateError } = await supabase
             .from("waitlist_users")
-            .update({
-                referral_count: newCount,
-            })
+            .update(updateData)
             .eq("id", referrer.id);
 
         if (updateError) {
@@ -142,8 +153,45 @@ async function processReferral(newUserId, newUserEmail, referralCode) {
     }
 }
 
+/**
+ * Get complete waitlist data for a user.
+ * Returns all data needed by frontend: referralCode, position, referralCount, rewardStatus
+ * 
+ * @param {string} userId - The user's ID
+ * @returns {Promise<Object>} Object containing referralCode, position, referralCount, rewardStatus
+ */
+async function getUserWaitlistData(userId) {
+    try {
+        // Fetch user data
+        const { data: user, error: userError } = await supabase
+            .from("waitlist_users")
+            .select("*")
+            .eq("id", userId)
+            .single();
+
+        if (userError || !user) {
+            console.error("Error fetching user data:", userError);
+            return null;
+        }
+
+        // Calculate position (stable, based on created_at)
+        const position = await calculateWaitlistPosition(userId);
+
+        return {
+            referralCode: user.referral_code,
+            position: position,
+            referralCount: user.referral_count || 0,
+            rewardStatus: user.reward_status || "locked",
+        };
+    } catch (err) {
+        console.error("Unexpected error fetching user waitlist data:", err);
+        return null;
+    }
+}
+
 module.exports = {
     calculateWaitlistPosition,
     generateUniqueReferralCode,
     processReferral,
+    getUserWaitlistData,
 };
