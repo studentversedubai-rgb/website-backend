@@ -15,6 +15,7 @@ const {
   calculateWaitlistPosition,
   generateUniqueReferralCode,
   processReferral,
+  getUserWaitlistData,
 } = require("./waitlistService");
 
 const app = express();
@@ -302,19 +303,23 @@ app.post("/api/auth/verify-otp", async (req, res) => {
     if (existingUser && existingUser.is_verified) {
       await clearPendingSignup(email);
 
-      // Calculate current waitlist position
-      const position = await calculateWaitlistPosition(existingUser.id);
+      // Fetch complete waitlist data
+      const waitlistData = await getUserWaitlistData(existingUser.id);
+
+      if (!waitlistData) {
+        return res.status(500).json({
+          ok: false,
+          error: "An error occurred. Please try again later.",
+        });
+      }
 
       // ONE-TIME DATA RETURN (no auth, no way to fetch again)
       return res.json({
         ok: true,
-        action: "login",
-        message: "Welcome back! Email verified successfully.",
-        data: {
-          referralCode: existingUser.referral_code,
-          referralCount: existingUser.referral_count || 0,
-          waitlistPosition: position,
-        },
+        referralCode: waitlistData.referralCode,
+        position: waitlistData.position,
+        referralCount: waitlistData.referralCount,
+        rewardStatus: waitlistData.rewardStatus,
       });
     }
 
@@ -335,19 +340,23 @@ app.post("/api/auth/verify-otp", async (req, res) => {
 
       await clearPendingSignup(email);
 
-      // Calculate waitlist position
-      const position = await calculateWaitlistPosition(existingUser.id);
+      // Fetch complete waitlist data
+      const waitlistData = await getUserWaitlistData(existingUser.id);
+
+      if (!waitlistData) {
+        return res.status(500).json({
+          ok: false,
+          error: "An error occurred. Please try again later.",
+        });
+      }
 
       // ONE-TIME DATA RETURN
       return res.json({
         ok: true,
-        action: "verified",
-        message: "Email verified successfully!",
-        data: {
-          referralCode: existingUser.referral_code,
-          referralCount: existingUser.referral_count || 0,
-          waitlistPosition: position,
-        },
+        referralCode: waitlistData.referralCode,
+        position: waitlistData.position,
+        referralCount: waitlistData.referralCount,
+        rewardStatus: waitlistData.rewardStatus,
       });
     }
 
@@ -400,19 +409,23 @@ app.post("/api/auth/verify-otp", async (req, res) => {
 
     await clearPendingSignup(email);
 
-    // Calculate waitlist position for new user
-    const position = await calculateWaitlistPosition(newUser.id);
+    // Fetch complete waitlist data (includes updated referral count if referred)
+    const waitlistData = await getUserWaitlistData(newUser.id);
+
+    if (!waitlistData) {
+      return res.status(500).json({
+        ok: false,
+        error: "An error occurred. Please try again later.",
+      });
+    }
 
     // ONE-TIME DATA RETURN (ONLY time user gets this data)
     return res.json({
       ok: true,
-      action: "signup",
-      message: "Account created and verified successfully!",
-      data: {
-        referralCode: newUser.referral_code,
-        referralCount: 0,
-        waitlistPosition: position,
-      },
+      referralCode: waitlistData.referralCode,
+      position: waitlistData.position,
+      referralCount: waitlistData.referralCount,
+      rewardStatus: waitlistData.rewardStatus,
     });
   } catch (err) {
     console.error("Unexpected error in /api/auth/verify-otp:", err);
