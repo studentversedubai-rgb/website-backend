@@ -61,3 +61,10 @@ temp/
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
+
+# Development and testing utilities (not needed in production)
+test-*.js
+clear-*.js
+*-test.js
+*.test.js
+*.spec.js
