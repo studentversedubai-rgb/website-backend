@@ -445,11 +445,10 @@ app.get('/api/user/data', async (req, res) => {
     return res.status(400).json({ ok: false, error: 'Email is required' });
   }
 
-  // Query with email (case-insensitive)
   const { data: user, error } = await supabase
     .from('waitlist_users')
-    .select('referral_code, referral_count')
-    .ilike('email', email)  // Changed to ilike for case-insensitive search
+    .select('referral_code, referral_count, reward_status')  // ← Added reward_status
+    .ilike('email', email)
     .single();
 
   if (error) {
@@ -461,17 +460,16 @@ app.get('/api/user/data', async (req, res) => {
     return res.status(404).json({ ok: false, error: 'User not found' });
   }
 
-  // Return data without position
   return res.json({
     ok: true,
     data: {
       referralCode: user.referral_code,
       referralCount: user.referral_count,
-      waitlistPosition: 0  // Send a dummy value since we don't need it
+      waitlistPosition: 0,
+      rewardStatus: user.reward_status  // ← Added this
     }
   });
 });
-
 // -------------------- START SERVER --------------------
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
