@@ -438,8 +438,6 @@ app.post("/api/auth/verify-otp", async (req, res) => {
   }
 });
 
-
-// ADD THIS NEW ROUTE:
 app.get('/api/user/data', async (req, res) => {
   const email = req.query.email;
   
@@ -447,22 +445,29 @@ app.get('/api/user/data', async (req, res) => {
     return res.status(400).json({ ok: false, error: 'Email is required' });
   }
 
+  // Query with email (case-insensitive)
   const { data: user, error } = await supabase
     .from('waitlist_users')
-    .select('referral_code, referral_count, position')
-    .eq('email', email)
+    .select('referral_code, referral_count')
+    .ilike('email', email)  // Changed to ilike for case-insensitive search
     .single();
 
-  if (error || !user) {
+  if (error) {
+    console.error('Supabase error:', error);
     return res.status(404).json({ ok: false, error: 'User not found' });
   }
 
+  if (!user) {
+    return res.status(404).json({ ok: false, error: 'User not found' });
+  }
+
+  // Return data without position
   return res.json({
     ok: true,
     data: {
       referralCode: user.referral_code,
       referralCount: user.referral_count,
-      waitlistPosition: user.position
+      waitlistPosition: 0  // Send a dummy value since we don't need it
     }
   });
 });
