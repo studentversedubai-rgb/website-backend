@@ -438,6 +438,35 @@ app.post("/api/auth/verify-otp", async (req, res) => {
   }
 });
 
+
+// ADD THIS NEW ROUTE:
+app.get('/api/user/data', async (req, res) => {
+  const email = req.query.email;
+  
+  if (!email) {
+    return res.status(400).json({ ok: false, error: 'Email is required' });
+  }
+
+  const { data: user, error } = await supabase
+    .from('waitlist_users')
+    .select('referral_code, referral_count, position')
+    .eq('email', email)
+    .single();
+
+  if (error || !user) {
+    return res.status(404).json({ ok: false, error: 'User not found' });
+  }
+
+  return res.json({
+    ok: true,
+    data: {
+      referralCode: user.referral_code,
+      referralCount: user.referral_count,
+      waitlistPosition: user.position
+    }
+  });
+});
+
 // -------------------- START SERVER --------------------
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
