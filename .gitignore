@@ -68,3 +68,10 @@ clear-*.js
 *-test.js
 *.test.js
 *.spec.js
+
+# Dead files — old waitlist/OTP system (not used by new frontend)
+emailService.js
+otpService.js
+rateLimitService.js
+redisClient.js
+waitlistService.js
