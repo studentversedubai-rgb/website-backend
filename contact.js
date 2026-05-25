@@ -28,7 +28,7 @@ router.post('/submit', async (req, res) => {
 
   try {
     const { error } = await supabase
-      .from('contact_messages')
+      .from('test_contact_business')
       .insert({
         first_name: firstName,
         last_name: lastName,
@@ -47,6 +47,41 @@ router.post('/submit', async (req, res) => {
     console.error('Contact form error:', err);
     return res.status(500).json({
       error: 'Failed to submit message'
+    });
+  }
+});
+
+// POST /api/contact/support
+router.post('/support', async (req, res) => {
+  const { name, email, priority, category, message } = req.body || {};
+
+  if (!name || !email || !priority || !category || !message) {
+    return res.status(400).json({
+      error: 'All fields are required'
+    });
+  }
+
+  try {
+    const { error } = await supabase
+      .from('test_contact_support')
+      .insert({
+        first_name: name,
+        last_name: '', // support form doesn't collect last name
+        email,
+        message: `Priority: ${priority}\nCategory: ${category}\n\n${message}`,
+        inquiry_type: 'student_support'
+      });
+
+    if (error) throw error;
+
+    return res.json({
+      ok: true,
+      message: 'Support ticket submitted successfully'
+    });
+  } catch (err) {
+    console.error('Support form error:', err);
+    return res.status(500).json({
+      error: 'Failed to submit support ticket'
     });
   }
 });
