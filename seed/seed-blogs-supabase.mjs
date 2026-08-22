@@ -12,11 +12,15 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const SUPABASE_URL = process.env.SUPABASE_URL?.replace(/\/+$/, "");
+// NEXT_PUBLIC_ prefix accepted too, since the values usually get copied out of the dashboard's .env.local.
+const SUPABASE_URL = (
+  process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL
+)?.replace(/\/+$/, "");
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
-  console.error("Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.");
+  console.error("Set SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY.");
+  console.error("Reading a file? node --env-file=.env.local seed/seed-blogs-supabase.mjs");
   process.exit(1);
 }
 
