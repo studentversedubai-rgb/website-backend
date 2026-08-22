@@ -1,0 +1,905 @@
+[
+  {
+    "slug": "orbit-ai-beta",
+    "category": "Product Updates",
+    "title": "Orbit AI is now in Beta: your campus assistant, reimagined",
+    "excerpt": "A first look at how Orbit helps students find deals, plan spending, and get quick answers — right inside the app.",
+    "cover_image_url": "/blogs/blog-orbit-ai-v1.avif",
+    "cover_image_alt": "Three students on a sunlit campus bench, leaning in to look at something on one of their phones",
+    "intro": "Orbit is StudentVerse's new AI companion — built for campus life, not generic chat. In this beta we are testing how it finds deals, explains spending, and answers quick questions without leaving the app. This guide walks through what Orbit can do today, what is still learning, and how to get the most out of it.",
+    "chapter_layout": "cards",
+    "featured": true,
+    "reading_time_min": 4,
+    "status": "published",
+    "published_date": "2026-08-12",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-1",
+        "kicker": "Chapter 1",
+        "heading": "WHAT ORBIT IS (AND ISN'T)",
+        "content": "Orbit is a campus-tuned assistant, not a search engine. It knows StudentVerse partners, your saved preferences, and common student workflows — so it can answer 'where can I print near AUD for under AED 5' in one go.",
+        "nav_label": "01 — What Orbit is",
+        "badge": "01",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Orbit is a campus-tuned assistant, not a search engine. It knows StudentVerse partners, your saved preferences, and common student workflows — so it can answer 'where can I print near AUD for under AED 5' in one go."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Knows StudentVerse partners, prices and redeem steps",
+              "Remembers your campus and preferences",
+              "Answers in one go, not a list of links",
+              "Not a generic web search — campus-first"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-2",
+        "kicker": "Chapter 2",
+        "heading": "FINDING DEALS FASTER",
+        "content": "Ask in plain language — 'cheap cafe near DSO with student discount' — and Orbit surfaces the best match, opening hours, and how to redeem. No filters to fiddle with.",
+        "nav_label": "02 — Finding deals",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask in plain language — 'cheap cafe near DSO with student discount' — and Orbit surfaces the best match, opening hours, and how to redeem. No filters to fiddle with."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Try 'cheap cafe near DSO with student discount'",
+              "Add campus: 'near AUD', 'in DSO', 'around Al Barsha'",
+              "Ask for hours: 'open now until 10pm'",
+              "Ask how to redeem: 'how do I Flash this?'"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-3",
+        "kicker": "Chapter 3",
+        "heading": "PLANNING & BUDGETING HELP",
+        "content": "Orbit can summarise where your money went this month and suggest swaps — like printing at the campus hub instead of a mall kiosk — before you overspend.",
+        "nav_label": "03 — Budgeting help",
+        "badge": "03",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Orbit can summarise where your money went this month and suggest swaps — like printing at the campus hub instead of a mall kiosk — before you overspend."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "Ask 'where did I overspend last month?' — Orbit groups by food, transport and printing and suggests one swap to try next month."
+          }
+        ]
+      },
+      {
+        "sort_order": 3,
+        "anchor_id": "chapter-4",
+        "kicker": "Chapter 4",
+        "heading": "JOINING THE BETA",
+        "content": "Beta is open inside TestFlight and Play internal testing. Your feedback trains the next model — flag anything that feels off and tell us what you wish it could do.",
+        "nav_label": "04 — Joining beta",
+        "badge": "04",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Beta is open inside TestFlight and Play internal testing. Your feedback trains the next model — flag anything that feels off and tell us what you wish it could do."
+          },
+          {
+            "type": "resource",
+            "title": "JOIN THE BETA",
+            "description": "Get TestFlight and Play internal links, plus a 2-minute checklist to send useful feedback.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      },
+      {
+        "sort_order": 4,
+        "anchor_id": "chapter-5",
+        "kicker": "Chapter 5",
+        "heading": "WHAT'S NEXT",
+        "content": "Voice input, receipt scanning, and campus-specific answers per university are on the shortlist. This post will be updated as each ships.",
+        "nav_label": "05 — What's next",
+        "badge": "05",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Voice input, receipt scanning, and campus-specific answers per university are on the shortlist. This post will be updated as each ships."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Voice input for hands-free queries",
+              "Receipt scanning to auto-categorise spend",
+              "Campus-specific answers per university",
+              "Live queue times for print hubs"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "cafes-near-aud-student-discounts",
+    "category": "Partnerships",
+    "title": "5 cafes near AUD now offering exclusive StudentVerse discounts",
+    "excerpt": "Fresh partnerships across Dubai campuses, with more on the way.",
+    "cover_image_url": "/blogs/blog-cafes-v1.avif",
+    "cover_image_alt": "Four students laughing around a small table of iced coffees in a bright, window-lit cafe",
+    "intro": "We partnered with five independent cafes within a ten-minute walk of AUD so you can grab a study spot without burning your weekly budget. Each offers an exclusive StudentVerse discount — flash your pass at checkout. Here is where to go, what to order, and when the quiet hours are.",
+    "chapter_layout": "cards",
+    "featured": false,
+    "reading_time_min": 3,
+    "status": "published",
+    "published_date": "2026-08-06",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-1",
+        "kicker": "PARTNERSHIP",
+        "heading": "THE BREW BAR — 15% OFF",
+        "content": "Two minutes from Block C, best for early mornings. Try the karak cold brew. Show the app before they start the order to apply the discount.",
+        "nav_label": "01 — The Brew Bar",
+        "badge": "01",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Two minutes from Block C, best for early mornings. Try the karak cold brew. Show the app before they start the order to apply the discount."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Order: karak cold brew or flat white",
+              "Show StudentVerse before the barista starts the order",
+              "Quiet hours: before 10am and after 4pm",
+              "2-minute walk from Block C"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-2",
+        "kicker": "PARTNERSHIP",
+        "heading": "NOTE CAFE — BUY 1 GET 1 ON DRIP",
+        "content": "The one with the big shared table. Quiet after 3pm, strong Wi-Fi, and the BOGO applies to drip only — perfect for long revision sessions.",
+        "nav_label": "02 — Note Cafe",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The one with the big shared table. Quiet after 3pm, strong Wi-Fi, and the BOGO applies to drip only — perfect for long revision sessions."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "BOGO is drip only and applies at the till — tap Flash before you pay, not after."
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-3",
+        "kicker": "PARTNERSHIP",
+        "heading": "SALT & BEAN — 20% OFF PASTRIES",
+        "content": "Pair it with a flat white. Valid all day except weekends; just tap Flash in the app at the counter.",
+        "nav_label": "03 — Salt & Bean",
+        "badge": "03",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Pair it with a flat white. Valid all day except weekends; just tap Flash in the app at the counter."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Valid all day, Monday–Friday",
+              "Pastries + flat white is the best combo",
+              "Flash at the counter — no code needed",
+              "Weekends excluded"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 3,
+        "anchor_id": "chapter-4",
+        "kicker": "GUIDE",
+        "heading": "HOW TO REDEEM ON CAMPUS",
+        "content": "Open the partner card in StudentVerse, hit Flash, and let the cashier scan. No codes to remember and the discount stacks with any campus loyalty card you already have.",
+        "nav_label": "04 — How to redeem",
+        "badge": "04",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Open the partner card in StudentVerse, hit Flash, and let the cashier scan. No codes to remember and the discount stacks with any campus loyalty card you already have."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Open the cafe's partner card in StudentVerse",
+              "Tap Flash and show the QR to the cashier",
+              "Let the till apply the discount — no codes",
+              "Stacks with campus loyalty cards"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 4,
+        "anchor_id": "chapter-5",
+        "kicker": "COMMUNITY",
+        "heading": "SUGGEST THE NEXT CAFE",
+        "content": "Know a spot we missed? Drop it in the in-app suggestion form — we prioritise places students actually study, not just the most Instagrammed.",
+        "nav_label": "05 — Suggest next",
+        "badge": "05",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Know a spot we missed? Drop it in the in-app suggestion form — we prioritise places students actually study, not just the most Instagrammed."
+          },
+          {
+            "type": "resource",
+            "title": "SUGGEST A CAFE",
+            "description": "Tell us the cafe, why it's good for studying, and what deal you'd like to see. Most-requested spots get onboarded first.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "uae-student-budgets-2026",
+    "category": "Student Life",
+    "title": "How UAE students are actually spending their budgets in 2026",
+    "excerpt": "We looked at real usage data to see where student money goes each month.",
+    "cover_image_url": "/blogs/blog-budgets-v1.avif",
+    "cover_image_alt": "Two students at a library table working out a monthly budget with a phone, a notebook and a stack of receipts",
+    "intro": "We anonymised six months of StudentVerse spend data to see where money really goes — rent, food, transport, printing, and the small daily taps that add up. The pattern is surprisingly consistent across Dubai campuses, and it points to three easy wins for the next semester.",
+    "chapter_layout": "cards",
+    "featured": false,
+    "reading_time_min": 6,
+    "status": "published",
+    "published_date": "2026-07-29",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-1",
+        "kicker": "INSIGHT",
+        "heading": "THE BIG PICTURE",
+        "content": "On average students spend AED 2,800–3,400 a month. Food is the swing factor — cooking twice a week cuts it by 18% versus eating out daily.",
+        "nav_label": "01 — Big picture",
+        "badge": "01",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "On average students spend AED 2,800–3,400 a month. Food is the swing factor — cooking twice a week cuts it by 18% versus eating out daily."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Average: AED 2,800–3,400 per month",
+              "Food is the largest swing factor",
+              "Cooking twice a week saves ~18%",
+              "Small daily taps add up faster than rent"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-2",
+        "kicker": "INSIGHT",
+        "heading": "FOOD & GROCERIES",
+        "content": "Groceries are 31% of spend, cafes another 12%. Batch-cooking Sundays and using the AUD co-op discount were the two most common savers.",
+        "nav_label": "02 — Food",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Groceries are 31% of spend, cafes another 12%. Batch-cooking Sundays and using the AUD co-op discount were the two most common savers."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "Shop the co-op on Sunday and batch-cook two meals — the data shows this one habit saves ~AED 220/month."
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-3",
+        "kicker": "INSIGHT",
+        "heading": "TRANSPORT",
+        "content": "Metro + NOL is still cheapest. Students who mixed in one weekly taxi averaged AED 210 more than those who didn't — the single biggest avoidable cost.",
+        "nav_label": "03 — Transport",
+        "badge": "03",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Metro + NOL is still cheapest. Students who mixed in one weekly taxi averaged AED 210 more than those who didn't — the single biggest avoidable cost."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Metro + NOL is consistently cheapest",
+              "One weekly taxi adds ~AED 210/month",
+              "Preload NOL on payday to avoid top-up fees",
+              "Check shuttle times before booking a flat"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 3,
+        "anchor_id": "chapter-4",
+        "kicker": "INSIGHT",
+        "heading": "PRINTING & SUPPLIES",
+        "content": "Exam months spike printing by 3×. Booking through the campus hub rather than mall counters saved an average AED 38 per exam season.",
+        "nav_label": "04 — Printing",
+        "badge": "04",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Exam months spike printing by 3×. Booking through the campus hub rather than mall counters saved an average AED 38 per exam season."
+          },
+          {
+            "type": "resource",
+            "title": "CAMPUS PRINT HUB",
+            "description": "Compare campus hub vs mall pricing, live queue times and Flash discounts near your university.",
+            "href": "/blogs/print-stationery-deals-exam-season",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      },
+      {
+        "sort_order": 4,
+        "anchor_id": "chapter-5",
+        "kicker": "INSIGHT",
+        "heading": "SUBSCRIPTIONS & APPS",
+        "content": "We found 42% of students pay for two music apps at once. Audit your subscriptions once a semester — it is the fastest AED 30–60 back.",
+        "nav_label": "05 — Subscriptions",
+        "badge": "05",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We found 42% of students pay for two music apps at once. Audit your subscriptions once a semester — it is the fastest AED 30–60 back."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "42% pay for two music apps at once",
+              "Audit subscriptions once a semester",
+              "Fastest win: AED 30–60 back instantly",
+              "Student plans for Spotify/YouTube are often missed"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 5,
+        "anchor_id": "chapter-6",
+        "kicker": "ACTION",
+        "heading": "THREE MOVES FOR NEXT TERM",
+        "content": "Cook twice, audit subscriptions, and preload your NOL on payday. Together they were worth AED 280/month in the data.",
+        "nav_label": "06 — Next term moves",
+        "badge": "06",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Cook twice, audit subscriptions, and preload your NOL on payday. Together they were worth AED 280/month in the data."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "Put a monthly reminder on payday: 10 minutes to preload NOL, cancel one subscription and plan two cooked meals — saves ~AED 280."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "baitna-student-housing-pilot",
+    "category": "Campus",
+    "title": "Baitna pilot launches: student housing, simplified",
+    "excerpt": "An early look at our new housing arm, currently piloting with select universities.",
+    "cover_image_url": "/blogs/blog-housing-v1.avif",
+    "cover_image_alt": "Three students unpacking boxes into a sunlit student apartment on move-in day",
+    "intro": "Baitna is our answer to scattered listings, WhatsApp brokers, and unclear contracts. For this pilot we have verified 120 rooms across Dubai South, Al Barsha and International City — all with clear pricing, photos, and a StudentVerse guarantee. Here is how it works if your university is in the pilot.",
+    "chapter_layout": "cards",
+    "featured": false,
+    "reading_time_min": 5,
+    "status": "published",
+    "published_date": "2026-07-20",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-1",
+        "kicker": "PILOT",
+        "heading": "HOW THE PILOT WORKS",
+        "content": "You browse verified listings in the app, book a viewing, and sign a single bilingual contract. No broker fee — StudentVerse handles the match.",
+        "nav_label": "01 — How it works",
+        "badge": "01",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "You browse verified listings in the app, book a viewing, and sign a single bilingual contract. No broker fee — StudentVerse handles the match."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Browse verified rooms directly in the app",
+              "Book a viewing in one tap",
+              "Sign one bilingual contract",
+              "Zero broker fee — we handle the match"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-2",
+        "kicker": "VERIFIED",
+        "heading": "WHAT IS VERIFIED",
+        "content": "Every room is visited and photographed by us. We check Ejari eligibility, DEWA inclusion, commute time by metro, and the landlord's response rate before it goes live.",
+        "nav_label": "02 — Verified checks",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Every room is visited and photographed by us. We check Ejari eligibility, DEWA inclusion, commute time by metro, and the landlord's response rate before it goes live."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Ejari eligibility confirmed",
+              "DEWA inclusion checked",
+              "Metro commute timed door-to-door",
+              "Landlord response rate verified",
+              "Photos taken by us, not renders"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-3",
+        "kicker": "GUARANTEE",
+        "heading": "PRICING & GUARANTEE",
+        "content": "Rent is shown inclusive of fees. If what you see is not what you get on move-in day, Baitna rehouses you within a week at no extra cost — that is the guarantee.",
+        "nav_label": "03 — Guarantee",
+        "badge": "03",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Rent is shown inclusive of fees. If what you see is not what you get on move-in day, Baitna rehouses you within a week at no extra cost — that is the guarantee."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "Screenshot the listing on viewing day — if anything mismatches at move-in, our guarantee covers re-housing within 7 days."
+          }
+        ]
+      },
+      {
+        "sort_order": 3,
+        "anchor_id": "chapter-4",
+        "kicker": "ACCESS",
+        "heading": "WHO CAN JOIN NOW",
+        "content": "AUD, UOWD and Heriot-Watt Dubai students can join today. More campuses open each month — add yourself to the waitlist and we will notify your university lead.",
+        "nav_label": "04 — Who can join",
+        "badge": "04",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "AUD, UOWD and Heriot-Watt Dubai students can join today. More campuses open each month — add yourself to the waitlist and we will notify your university lead."
+          },
+          {
+            "type": "resource",
+            "title": "JOIN THE WAITLIST",
+            "description": "Add your university and get notified when Baitna opens on your campus — earliest waitlist gets priority viewing.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      },
+      {
+        "sort_order": 4,
+        "anchor_id": "chapter-5",
+        "kicker": "ROADMAP",
+        "heading": "ROADMAP TO FULL LAUNCH",
+        "content": "Next up: roommate matching, semester-length contracts, and in-app rent splitting. Pilot feedback decides the order we ship them.",
+        "nav_label": "05 — Roadmap",
+        "badge": "05",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Next up: roommate matching, semester-length contracts, and in-app rent splitting. Pilot feedback decides the order we ship them."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Roommate matching by campus and budget",
+              "Semester-length contracts, not 12-month lock-ins",
+              "In-app rent splitting with housemates",
+              "Pilot feedback decides ship order"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "print-stationery-deals-exam-season",
+    "category": "Partnerships",
+    "title": "Bringing print and stationery deals to exam season",
+    "excerpt": "New category, new partners, right when students need it most.",
+    "cover_image_url": "/blogs/blog-stationery-v2.avif",
+    "cover_image_alt": "Two students picking out notebooks and pens at a campus print and stationery counter",
+    "intro": "Exam season should be about revision, not hunting for a cheap print shop at 9pm. We have added six campus print hubs and two stationery suppliers to StudentVerse — all with clear per-page pricing and instant Flash discounts so you can print, bind, and stock up without the markup.",
+    "chapter_layout": "cards",
+    "featured": false,
+    "reading_time_min": 3,
+    "status": "published",
+    "published_date": "2026-07-14",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-1",
+        "kicker": "NEW",
+        "heading": "WHAT IS NEW",
+        "content": "A4 black-and-white from AED 0.08, colour from AED 0.45, plus binding, lamination and bulk note bundles. All partners are on campus or <5 minutes away.",
+        "nav_label": "01 — What's new",
+        "badge": "01",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A4 black-and-white from AED 0.08, colour from AED 0.45, plus binding, lamination and bulk note bundles. All partners are on campus or <5 minutes away."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "A4 black-and-white from AED 0.08",
+              "Colour from AED 0.45, binding from AED 3",
+              "Bulk note bundles with Flash discount",
+              "All hubs on campus or <5 mins away"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-2",
+        "kicker": "HOW IT WORKS",
+        "heading": "HOW FLASH PRICING WORKS",
+        "content": "No coupon codes. Open the partner card, tap Flash, and the till applies your student rate automatically. Works for walk-ins and app orders.",
+        "nav_label": "02 — Flash pricing",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "No coupon codes. Open the partner card, tap Flash, and the till applies your student rate automatically. Works for walk-ins and app orders."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "No codes to remember — just open the partner card and tap Flash before the cashier totals the bill."
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-3",
+        "kicker": "TIMING",
+        "heading": "EXAM-WEEK TIP",
+        "content": "Upload before 6pm and collect next morning — queues after 8pm can triple. The app shows live queue times so you can time it right.",
+        "nav_label": "03 — Exam tip",
+        "badge": "03",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Upload before 6pm and collect next morning — queues after 8pm can triple. The app shows live queue times so you can time it right."
+          },
+          {
+            "type": "resource",
+            "title": "CHECK QUEUE TIMES",
+            "description": "See live wait times for each campus hub before you upload — pick the shortest queue and collect next morning.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      },
+      {
+        "sort_order": 3,
+        "anchor_id": "chapter-4",
+        "kicker": "COMMUNITY",
+        "heading": "SUGGEST A SHOP",
+        "content": "If your preferred print room is missing, suggest it in-app. We onboard the most requested shops each week during exams.",
+        "nav_label": "04 — Suggest a shop",
+        "badge": "04",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "If your preferred print room is missing, suggest it in-app. We onboard the most requested shops each week during exams."
+          },
+          {
+            "type": "resource",
+            "title": "SUGGEST A SHOP",
+            "description": "Tell us your go-to print room and why — most-requested shops get prioritized for the next onboarding wave.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "studentverse-app-roadmap",
+    "category": "Product Updates",
+    "title": "What's next for the StudentVerse app roadmap",
+    "excerpt": "A transparent look at what we're building over the next two quarters.",
+    "cover_image_url": "/blogs/blog-roadmap-v2.avif",
+    "cover_image_alt": "Four people planning ahead at a glass wall of coloured sticky notes in a bright studio",
+    "intro": "We are sharing the next two quarters in the open — what is shipping, what is being explored, and what we deliberately pushed back. The north star hasn't changed: save students money and time on the tasks campus makes harder than it should be.",
+    "chapter_layout": "cards",
+    "featured": false,
+    "reading_time_min": 5,
+    "status": "published",
+    "published_date": "2026-07-04",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-1",
+        "kicker": "Q3 PLAN",
+        "heading": "Q3 — ORBIT POLISH",
+        "content": "Faster answers, fewer hallucinations, and the ability to act — not just explain — on deals and campus queries. Beta feedback is the input.",
+        "nav_label": "01 — Q3 Orbit",
+        "badge": "01",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Faster answers, fewer hallucinations, and the ability to act — not just explain — on deals and campus queries. Beta feedback is the input."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Faster, more accurate campus answers",
+              "Fewer hallucinations via better grounding",
+              "Act on deals, not just explain them",
+              "Beta feedback drives priority"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-2",
+        "kicker": "Q3 PLAN",
+        "heading": "Q3 — BAITNA EXPANSION",
+        "content": "From 3 to 9 campuses, plus roommate matching and DEWA-inclusive filters. The guarantee stays — we fix a bad match for free.",
+        "nav_label": "02 — Q3 Baitna",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "From 3 to 9 campuses, plus roommate matching and DEWA-inclusive filters. The guarantee stays — we fix a bad match for free."
+          },
+          {
+            "type": "resource",
+            "title": "BAITNA WAITLIST",
+            "description": "Add your campus to the expansion list — priority for early waitlist sign-ups when we open next.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-3",
+        "kicker": "Q4 PLAN",
+        "heading": "Q4 — BUDGET V2",
+        "content": "Automatic categorisation, spend alerts before you hit your cap, and a semester view that actually matches the academic calendar.",
+        "nav_label": "03 — Q4 Budget v2",
+        "badge": "03",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Automatic categorisation, spend alerts before you hit your cap, and a semester view that actually matches the academic calendar."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "Semester view will finally match your academic calendar — no more January–December budgets that ignore your actual term."
+          }
+        ]
+      },
+      {
+        "sort_order": 3,
+        "anchor_id": "chapter-4",
+        "kicker": "Q4 PLAN",
+        "heading": "Q4 — CAMPUS PACKS",
+        "content": "Curated bundles — visa renewal, new-joiner kit, exam kit — with one-tap Flash on the whole pack, not just single partners.",
+        "nav_label": "04 — Q4 Campus packs",
+        "badge": "04",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Curated bundles — visa renewal, new-joiner kit, exam kit — with one-tap Flash on the whole pack, not just single partners."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Visa renewal pack with partner checklist",
+              "New-joiner kit for first-month essentials",
+              "Exam kit: print, stationery and late-night cafe",
+              "One Flash for the whole pack"
+            ]
+          }
+        ]
+      },
+      {
+        "sort_order": 4,
+        "anchor_id": "chapter-5",
+        "kicker": "CUT",
+        "heading": "WHAT WE CUT",
+        "content": "We parked in-app chat and a marketplace launch to keep the core tight. Both are explored again after Q4 if Budget v2 lands well.",
+        "nav_label": "05 — What we cut",
+        "badge": "05",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We parked in-app chat and a marketplace launch to keep the core tight. Both are explored again after Q4 if Budget v2 lands well."
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "Focusing on Budget v2 and Baitna first — marketplace returns only if core metrics improve."
+          }
+        ]
+      },
+      {
+        "sort_order": 5,
+        "anchor_id": "chapter-6",
+        "kicker": "PROCESS",
+        "heading": "HOW WE DECIDE",
+        "content": "Requests are ranked by number of students affected, not loudness. The public board shows every request's status — vote there and it counts.",
+        "nav_label": "06 — How we decide",
+        "badge": "06",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Requests are ranked by number of students affected, not loudness. The public board shows every request's status — vote there and it counts."
+          },
+          {
+            "type": "resource",
+            "title": "PUBLIC ROADMAP",
+            "description": "See every request's status and vote — most-voted ideas get prioritized each quarter.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "dubai-student-essentials-guide",
+    "category": "Student Life",
+    "title": "The Dubai student essentials guide: accommodation, local rules and discounts",
+    "excerpt": "A compact guide to three decisions every new student in Dubai gets wrong — and how to get them right.",
+    "cover_image_url": "/blogs/blog-housing-v1.avif",
+    "cover_image_alt": "Students walking on a Dubai university campus at dusk with bags and books",
+    "intro": "A practical short guide for new students in Dubai — how to pick a flat without getting burned, what local rules catch newcomers, and how to actually use your student discounts. Skim the three chapters or jump to the one you need.",
+    "chapter_layout": "cards",
+    "featured": false,
+    "reading_time_min": 7,
+    "status": "published",
+    "published_date": "2026-08-18",
+    "sections": [
+      {
+        "sort_order": 0,
+        "anchor_id": "chapter-2",
+        "kicker": "STUDENT GUIDE",
+        "heading": "2. CHOOSE ACCOMMODATION AROUND YOUR COMMUTE",
+        "content": "A lower rent can become expensive if you rely on taxis every day. Before signing anything, calculate the full journey from your building to your campus.",
+        "nav_label": "02 — Accommodation & commute",
+        "badge": "02",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A lower rent can become expensive if you rely on taxis every day. Before signing anything, calculate the full journey from your building to your campus."
+          },
+          {
+            "type": "paragraph",
+            "text": "Check walking distance, metro access, bus connections, university shuttle availability and late-night transport options."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Ask for the exact building location before paying",
+              "Test the journey during weekday traffic",
+              "Check whether bills are included",
+              "Confirm deposit and agency fees",
+              "Read the cancellation and notice terms",
+              "Never transfer money without verifying the listing and landlord"
+            ]
+          },
+          {
+            "type": "resource",
+            "title": "FIND STUDENT FLATMATES",
+            "description": "Join area-specific student groups for accommodation and flatmate searches across Dubai.",
+            "href": "/contact",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      },
+      {
+        "sort_order": 1,
+        "anchor_id": "chapter-7",
+        "kicker": "STUDENT GUIDE",
+        "heading": "7. LEARN THE LOCAL RULES",
+        "content": "Dubai is highly international, but UAE laws and public expectations still apply. Do not assume that conduct accepted in another country is automatically legal in Dubai.",
+        "nav_label": "07 — Local rules",
+        "badge": "07",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Dubai is highly international, but UAE laws and public expectations still apply. Do not assume that conduct accepted in another country is automatically legal in Dubai."
+          },
+          {
+            "type": "checkList",
+            "items": [
+              "Only consume alcohol in licensed settings and follow age requirements",
+              "Never possess or use illegal drugs",
+              "Avoid aggressive, abusive or offensive behaviour",
+              "Respect privacy when filming or photographing others",
+              "Be careful about what you post publicly online",
+              "Carry identification where appropriate"
+            ]
+          },
+          {
+            "type": "tip",
+            "title": "QUICK TIP",
+            "text": "When unsure, check an official UAE or Dubai Government source rather than relying on social-media comments."
+          }
+        ]
+      },
+      {
+        "sort_order": 2,
+        "anchor_id": "chapter-8",
+        "kicker": "STUDENT GUIDE",
+        "heading": "8. USE STUDENT DISCOUNTS PROPERLY",
+        "content": "Some offers require a university ID, some use an ISIC card and others require online student verification.",
+        "nav_label": "08 — Student discounts",
+        "badge": "08",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Some offers require a university ID, some use an ISIC card and others require online student verification."
+          },
+          {
+            "type": "paragraph",
+            "text": "Always confirm the expiry date, participating branch and minimum spend before travelling."
+          },
+          {
+            "type": "resource",
+            "title": "STUDENT DISCOUNTS GUIDE",
+            "description": "See transport, technology, travel, shopping and entertainment discount options for Dubai students.",
+            "href": "/blogs",
+            "ctaLabel": "EXPLORE THIS RESOURCE"
+          }
+        ]
+      }
+    ]
+  }
+]
