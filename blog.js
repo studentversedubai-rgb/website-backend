@@ -24,7 +24,7 @@ const LAYOUTS = ['cards', 'continuous'];
 const BLOG_COLUMNS = `
   id, slug, category, title, excerpt, published_date, reading_time_min,
   cover_image_url, cover_image_alt, featured, intro, chapter_layout,
-  status, summary, tags, published_at, created_at, updated_at
+  status, summary, tags, related_slugs, published_at, created_at, updated_at
 `;
 
 const SECTION_COLUMNS = `
@@ -69,7 +69,7 @@ function toChapter(row) {
 function toBlogPost(row, sections) {
   const list = Array.isArray(sections) ? sections : [];
 
-  return {
+  const post = {
     slug: row.slug,
     category: row.category,
     title: row.title,
@@ -86,12 +86,31 @@ function toBlogPost(row, sections) {
       .sort((a, b) => a.sort_order - b.sort_order)
       .map(toChapter),
   };
+
+  /* Curated "Relevant stories". Omitted rather than sent as [] so the site can
+     tell "the editor picked nothing" from "the editor picked these", and fall
+     back to newest-first only in the first case. The slugs are NOT resolved to
+     posts here: the site already holds the whole published list, so resolving
+     them there is a filter, while resolving them here would be N+1 joins. A
+     slug that no longer exists is dropped on the site side. */
+  if (Array.isArray(row.related_slugs) && row.related_slugs.length > 0) {
+    post.relatedSlugs = row.related_slugs;
+  }
+
+  return post;
 }
 
 // -------------------- VALIDATION --------------------
 
 function isFilledString(value) {
   return typeof value === 'string' && value.trim().length > 0;
+}
+
+/** A site-relative path or an absolute http(s) URL — nothing else links. */
+function isValidHref(value) {
+  if (!isFilledString(value)) return false;
+  const href = value.trim();
+  return href.startsWith('/') || /^https?:\/\//i.test(href);
 }
 
 /**
@@ -127,6 +146,13 @@ function validateBlock(block, path) {
       if (!isFilledString(block.title)) return path + '.title is required';
       if (!isFilledString(block.description)) return path + '.description is required';
       if (!isFilledString(block.href)) return path + '.href is required';
+      /* The card renders this straight into a next/link. A bare word like
+         "contact" would resolve relative to /blogs/<slug> and 404, and a
+         "www.x.com" would do the same — so the two shapes that actually work
+         are the only two accepted. */
+      if (!isValidHref(block.href)) {
+        return path + ".href must start with '/' (a page on the site) or with http(s)://";
+      }
       return null;
 
     default:
@@ -167,6 +193,28 @@ function validatePost(body) {
     }
   } else if (body.status === 'published') {
     return 'published_date is required when status is published';
+  }
+
+  /* Curated related posts. Slugs, not ids: a slug is the post's permanent
+     public identifier, so a tag survives the row being re-seeded, and the site
+     can resolve it without another round trip. Existence is NOT checked here —
+     a post may legitimately tag one that is still a draft, and the site drops
+     anything unresolved at render time rather than 404ing the tagger. */
+  if (body.related_slugs !== undefined && body.related_slugs !== null) {
+    if (!Array.isArray(body.related_slugs)) return 'related_slugs must be an array';
+    const seen = new Set();
+    for (let i = 0; i < body.related_slugs.length; i++) {
+      const slug = body.related_slugs[i];
+      if (!isFilledString(slug)) return 'related_slugs[' + i + '] must be a non-empty string';
+      const trimmed = slug.trim();
+      if (seen.has(trimmed)) return 'related_slugs lists "' + trimmed + '" twice';
+      seen.add(trimmed);
+    }
+    /* Self-tagging would put the post in its own Relevant rail. The database
+       has the same CHECK; this is the half that names the problem. */
+    if (isFilledString(body.slug) && seen.has(body.slug.trim())) {
+      return "related_slugs cannot contain the post's own slug";
+    }
   }
 
   if (!Array.isArray(body.sections) || body.sections.length === 0) {
@@ -246,7 +294,16 @@ function blogRecordFrom(body) {
     published_date: body.published_date || null,
     summary: isFilledString(body.summary) ? body.summary.trim() : null,
     tags: Array.isArray(body.tags) && body.tags.length > 0 ? body.tags : null,
+    related_slugs: normaliseSlugList(body.related_slugs),
   };
+}
+
+/** `[]` and `[""]` both mean "no picks", and both must reach the column as
+ *  NULL — an empty array would read as a curated-but-empty rail on the site. */
+function normaliseSlugList(value) {
+  if (!Array.isArray(value)) return null;
+  const slugs = value.filter(isFilledString).map((s) => s.trim());
+  return slugs.length > 0 ? slugs : null;
 }
 
 /**
